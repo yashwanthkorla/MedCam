@@ -19,3 +19,5 @@ An App which allows to recognize a medicine by using google vision API and provi
 ![Details of Medicine](./App_ScreenShots/DetailsOfMedicineFromDB.png)
 ![Bookmarking](./App_ScreenShots/Bookmarking.png)
 ![Web Search](./App_ScreenShots/WebSearch.png)
+
+You can also find the ppt in the App_ScreenShots folder
