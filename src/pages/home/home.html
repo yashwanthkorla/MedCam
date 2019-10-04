@@ -1,14 +1,34 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content style="background-color: rgba(245,245,245 ,1);">
+  <div id="overlay" [hidden]="overlayHidden">
+    <h2 text-center style="color:white;font-variant:small-caps;margin-top:50%;">
+      Click on the below camera icon to capture the image.
+      <br>
+      Green Camera is for in-house DB search and Blue Camera is for Web Search.
+    </h2>
+    <button ion-button col-6 offset-3 (click)="hideOverlay()">Got It</button>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  </div>
+  <div id="app_name">
+    <h1>MedCam</h1>
+  </div>
+  <div id="app_image">
+    <img src="assets/app_image.png">
+  </div>
+  <ion-grid>
+    <ion-row>
+      <div id="camera" (click)="presentActionSheet('text')" col-5 offset-1>
+        <img src="assets/camera2.png" />
+      </div>
+      <div id="camera" col-5 (click)="presentActionSheet('search')">
+        <img src="assets/camera3.png" />
+      </div>
+    </ion-row>
+  </ion-grid>
+  <div id="note">
+    <h5>Note:</h5>
+    <ul>
+      <li>Crop the Image to retain medicine name only</li>
+      <li>The search output depends on the image quality</li>
+    </ul>
+  </div>
 </ion-content>

@@ -1,0 +1,21 @@
+page-details {
+  #image {
+    text-align: center;
+  }
+  #text {
+    padding: 15px;
+    margin: 10px 0 10px 0px;
+    background-color: rgba(117, 117, 117, 1);
+    color: white;
+    border-radius: 5px;
+  }
+  #item {
+    background-color: rgba(104, 159, 56, 1);
+    border: 1px solid rgba(189, 189, 189, 1);
+    margin-bottom: 3px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+    height: 10px;
+  }
+}

@@ -1,0 +1,76 @@
+<!--
+  Generated template for the ListdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navbar">
+    <ion-title text-center>Medicine Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+  <div *ngIf="srcImage" id="image">
+    <img [src]="srcImage">
+  </div>
+  <h2 style="text-transform:uppercase;font-weight:bold;">{{med_name}}</h2>
+  <table>
+    <tr>
+      <td class="Col_name">Composition</td>
+      <td class="value">{{Comp}}</td>
+    </tr>
+    <tr>
+      <td class="Col_name">
+        Dosage
+      </td>
+      <td class="value">
+        {{dosage}}
+      </td>
+    </tr>
+    <tr>
+      <td class="Col_name">
+        Medicine Usage
+      </td>
+      <td class="value">
+        {{medicine_usage}}
+      </td>
+    </tr>
+    <tr>
+      <td class="Col_name">
+        Major side Effects
+      </td>
+      <td class="value">
+        {{major_side_effects}}
+      </td>
+    </tr>
+    <tr>
+      <td class="Col_name">
+        Minor side Effects
+      </td>
+      <td class="value">
+        {{minor_side_effects}}
+      </td>
+    </tr>
+    <tr>
+      <td class="Col_name">
+        Alcohol Interaction
+      </td>
+      <td class="value">
+        {{alcohol}}
+      </td>
+    </tr>
+    <tr>
+      <td class="Col_name">
+        Pregnancy Interaction
+      </td>
+      <td class="value">
+        {{pregnancy}}
+      </td>
+    </tr>
+  </table>
+</ion-content>
