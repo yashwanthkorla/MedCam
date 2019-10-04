@@ -1,6 +1,13 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ToastController
+} from "ionic-angular";
 import { Http, Headers, RequestOptions } from "@angular/http";
+import { SQLite, SQLiteObject } from "@ionic-native/sqlite";
+import { ViewPage } from "../view/view";
 // import * as $ from 'jquery';
 /**
  * Generated class for the ListdetailsPage page.
@@ -26,16 +33,19 @@ export class ListdetailsPage {
   pregnancy: any;
   constructor(
     public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    private sqlite: SQLite,
     public navParams: NavParams,
     public http: Http
   ) {
     this.dataImg = this.navParams.get("img");
     this.dataName = this.navParams.get("param");
+    // this.dataName = "vicks";
     this.srcImage = `data:image/jpeg;base64,` + this.dataImg;
   }
 
   detailsResult() {
-    let url: any = "http://<YourServerIp>/listdetails.php",
+    let url: any = "<http://<YourServerIP>/listdetails.php>",
       body: String = "&name=" + this.dataName,
       type: String = "application/x-www-form-urlencoded;charset=utf-8",
       headers: any = new Headers({ "Content-Type": type }),
@@ -43,8 +53,6 @@ export class ListdetailsPage {
 
     this.http.post(url, body, options).subscribe(data => {
       let b = JSON.parse(data["_body"]);
-      // console.log(b);
-      // if(b[0]['name'] != null){
       this.med_name = b[0]["name"] || "-";
       this.Comp = b[0]["composition"] || "-";
       this.dosage = b[0]["dosage"] || "-";
@@ -53,10 +61,7 @@ export class ListdetailsPage {
       this.major_side_effects = b[0]["major_side_effects"] || "-";
       this.minor_side_effects = b[0]["minor_side_effects"] || "-";
       this.pregnancy = b[0]["pregnancy_interaction"] || "-";
-      //   }
-      // else{
-      //   console.log(b[0]);
-      // }
+
       //Code for adding read more and read less
 
       // Starting of the read more and read less code.
@@ -103,7 +108,62 @@ export class ListdetailsPage {
       // End of read more and read less.
     });
   }
+
+  save() {
+    this.sqlite
+      .create({
+        name: "medDetails.db",
+        location: "default"
+      })
+      .then((db: SQLiteObject) => {
+        //Table Creation
+        // db.executeSql('create table if not exists test(id int AUTO_INCREMENT NOT NULL,name varchar(30),PRIMARY KEY(id))',{})
+        db.executeSql(
+          "create table if not exists med_details(name varchar(50) NOT NULL,composition varchar(500) NOT NULL,medicine_usage varchar(500) NOT NULL,  major_side_effects varchar(500) NOT NULL,minor_side_effects varchar(5000) NOT NULL,dosage varchar(200) NOT NULL,alcohol_interaction varchar(500) NOT NULL,pregnancy_interaction varchar(500) NOT NULL)",
+          {}
+        )
+          .then(res => {
+            // alert("Table created || Table Exist");
+          })
+          .catch(err => {
+            alert("No table is created");
+          });
+
+        //Insert Query
+        db.executeSql(
+          "insert into med_details(name,composition,medicine_usage,major_side_effects,minor_side_effects,dosage,alcohol_interaction,pregnancy_interaction) values(?,?,?,?,?,?,?,?)",
+          [
+            this.med_name,
+            this.Comp,
+            this.medicine_usage,
+            this.major_side_effects,
+            this.minor_side_effects,
+            this.dosage,
+            this.alcohol,
+            this.pregnancy
+          ]
+        )
+          .then(res => {
+            this.message("Data has been saved successfully");
+          })
+          .catch(err => alert("Insert Query Failed"));
+      })
+      .catch(err => alert("Error : " + err));
+  }
   ionViewDidLoad() {
     this.detailsResult();
+  }
+  message(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position: "bottom"
+    });
+    toast.present();
+  }
+
+  view() {
+    // let name = this.dataName;
+    this.navCtrl.push(ViewPage);
   }
 }

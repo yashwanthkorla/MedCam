@@ -1,0 +1,19 @@
+page-save {
+  table {
+    width: 100%;
+  }
+  td {
+    padding: 10px;
+  }
+  .Col_name {
+    background-color: rgba(96, 125, 139, 1);
+    color: white;
+  }
+  tr {
+    border: 1px solid rgba(144, 164, 174, 1);
+  }
+  .value {
+    background-color: rgba(207, 216, 220, 1);
+    white-space: pre-line;
+  }
+}
