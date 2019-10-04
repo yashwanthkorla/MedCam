@@ -20,4 +20,4 @@ An App which allows to recognize a medicine by using google vision API and provi
 ![Bookmarking](./App_ScreenShots/Bookmarking.png)
 ![Web Search](./App_ScreenShots/WebSearch.png)
 
-You can also find the ppt in the App_ScreenShots folder
+You can also find the ppt in the [App_ScreenShots folder](https://github.com/yashwanthkorla/MedCam/blob/master/App_ScreenShots/Medcam.pptx)
